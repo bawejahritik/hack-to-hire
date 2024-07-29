@@ -1,0 +1,42 @@
+.App {
+  padding: 20px;
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.flight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.flight-card {
+  border: 2px solid #1a237e;
+  padding: 10px;
+  border-radius: 10px;
+  background: #e8eaf6;
+}
+
+.flight-id {
+  color: #1a237e;
+  margin-bottom: 10px;
+}
+
+.flight-card p {
+  margin: 5px 0;
+}
+
+.modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  border: 2px solid #000;
+  box-shadow: 24px;
+  padding: 20px;
+}
