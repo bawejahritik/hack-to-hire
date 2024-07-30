@@ -11,6 +11,9 @@ class Flight(BaseModel):
   scheduled_arrival: str
   actual_departure: Optional[str] = None
   actual_arrival: Optional[str] = None
+
+class FetchFlight(BaseModel):
+  data: Flight
   
 class Update_Flight(BaseModel):
   flight_id: Optional[str] = None

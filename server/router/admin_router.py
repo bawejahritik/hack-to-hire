@@ -33,6 +33,7 @@ async def create_flight(req_body: Flight):
 
 @router.patch("/updateFlight/{flight_id}")
 async def update_flight(flight_id: str, req_body: Update_Flight):
+    print(req_body)
     body = req_body.dict(by_alias=True)
     new_body = {}
     for key in body.keys():
@@ -41,10 +42,18 @@ async def update_flight(flight_id: str, req_body: Update_Flight):
     result = await flights.update_flight(flight_id, new_body)
     emails = await flights.get_emails(flight_id)
     emails = emails[0]["passengers"]
-    if body["type"] == "GATE_CHANGE":
+    email_details = {}
+    if body["type"] == "gate_change":
         for email in emails:
             email_details = {'to': email, 'subject': "Flight Update", 'body': f"Your gate has been changed to {body["departure_gate"]}"}
             publish_to_queue(email_details)
-            print("Successfully sent to ", email)
+    elif body["type"] == "delay":
+        for email in emails:
+            email_details = {'to': email, 'subject': "Flight Update", 'body': f"Your flight is delayed. New departure time is {body["scheduled_departure"]}"}
+            # publish_to_queue(email_details)
+    elif body["type"] == "cancellation":
+        for email in emails:
+            email_details = {'to': email, 'subject': "Flight Update", 'body': f"Your flight is Cancelled."}       
+            publish_to_queue(email_details)
     
     return {"id": str(flight_id)}

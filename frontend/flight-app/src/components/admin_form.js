@@ -24,7 +24,7 @@ function AdminForm() {
     };
 
     // Send newFlight data to the backend
-    fetch("/api/add-flight", {
+    fetch("http://localhost:8000/admin/createFlight", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

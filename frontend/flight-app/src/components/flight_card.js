@@ -17,13 +17,16 @@ function FlightCard(props) {
   };
 
   const handleBooking = () => {
-    fetch("/api/book-flight", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ flight_id: selectedFlight.flight_id, email }),
-    })
+    fetch(
+      "http://localhost:8000/flights/book_flight/" + selectedFlight.flight_id,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ flight_id: selectedFlight.flight_id, email }),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Booking success:", data);

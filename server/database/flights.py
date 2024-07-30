@@ -28,6 +28,7 @@ async def fetch_flight(flight_id):
     return []
 
 async def create_flight(body):
+    body["passengers"] = []
     result = await flight_collection.insert_one(body)
     return result.inserted_id
 
