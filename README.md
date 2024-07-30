@@ -36,7 +36,7 @@ git clone https://github.com/bawejahritik/hack-to-hire.git
    ```
 3. Start the FastAPI server:
    ```bash
-   uvicorn main:app --reload
+   fastapi dev main.py
    ```
 
 ### Starting the Frontend
